@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>通号中心</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="stylesheet" type="text/css" href="__CSS__/base.css">
+		<link rel="stylesheet" type="text/css" href="__CSS__/iconfont.css">
+		<script type="text/javascript" src="__JS__/framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="__LIB__/layui/css/layui.css">
+		<script type="text/javascript" src="__LIB__/layui/layui.js"></script>
+		<!-- 滚动条插件 -->
+		<link rel="stylesheet" type="text/css" href="__CSS__/jquery.mCustomScrollbar.css">
+		<script src="__JS__/framework/jquery-ui-1.10.4.min.js"></script>
+		<script src="__JS__/framework/jquery.mousewheel.min.js"></script>
+		<script src="__JS__/framework/jquery.mCustomScrollbar.min.js"></script>
+		<script src="__JS__/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+
+	</head>
+
+	<body>
+		<div class="cBody">
+			<div class="console">
+				
+					<div class="layui-form-item">
+					<form class="layui-form" action="">
+						<div class="layui-input-inline">
+							<input type="text" name="name" required lay-verify="required" placeholder="输入查询名称" autocomplete="off" class="layui-input">
+						</div>
+						<div class="layui-input-inline">
+				        	<input type="text" class="layui-input" id="time" placeholder=" - ">
+						</div>
+						<div class="layui-input-inline">
+		                    <select name="provid" id="provid" lay-filter="provid">
+		                        <option value="">一级分类</option>
+		                    </select>
+		                </div>
+		                <div class="layui-input-inline">
+		                    <select name="cityid" id="cityid" lay-filter="cityid">
+		                        <option value="">二级分类</option>
+		                    </select>
+		                </div>	
+						<button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
+						</form>
+					</div>
+					<a href="agent_add.html"><button class="layui-btn" >添加花名册</button></a>
+
+				<script>
+					layui.use('form', function() {
+						var form = layui.form;
+				
+						//监听提交
+						form.on('submit(formDemo)', function(data) {
+							layer.msg(JSON.stringify(data.field));
+							return false;
+						});
+					});
+				</script>
+			</div>
+			
+			<table class="layui-table">
+				<thead>
+					<tr>
+						<th>姓名</th>
+						<th>工号</th>
+						<th>部门</th>
+						<th>科室</th>
+						<th>岗位</th>
+						<th>联系方式</th>
+						<th>入职日期</th>
+						<th>转正日期</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>陈福长</td>
+						<td>3078</td>
+						<td>通号中心</td>
+						<td>AFC车间</td>
+						<td>检修员</td>
+						<td>18600001111</td>
+						<td>2015年7月1日</td>
+						<td>2015年7月1日</td>
+						<td>
+						<a href="agent_edit.html"><button class="layui-btn layui-btn-xs">修改</button></a>&nbsp;&nbsp;&nbsp;
+							<button class="layui-btn layui-btn-xs">删除</button>
+						</td>
+					</tr>
+					<tr>
+						<td>陈福长</td>
+						<td>3078</td>
+						<td>通号中心</td>
+						<td>AFC车间</td>
+						<td>检修员</td>
+						<td>18600001111</td>
+						<td>2015年7月1日</td>
+						<td>2015年7月1日</td>
+						<td>
+							<a href="agent_edit.html"><button class="layui-btn layui-btn-xs">修改</button></a>&nbsp;&nbsp;&nbsp;
+							<button class="layui-btn layui-btn-xs">删除</button>
+						</td>
+					</tr>
+					<tr>
+						<td>陈福长</td>
+						<td>3078</td>
+						<td>通号中心</td>
+						<td>AFC车间</td>
+						<td>检修员</td>
+						<td>18600001111</td>
+						<td>2015年7月1日</td>
+						<td>2015年7月1日</td>
+						<td>
+							<a href="agent_edit.html"><button class="layui-btn layui-btn-xs">修改</button></a>&nbsp;&nbsp;&nbsp;
+							<button class="layui-btn layui-btn-xs">删除</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<!-- layUI 分页模块 -->
+			<div id="pages"></div>
+			<script>
+				layui.use(['laypage', 'layer'], function() {
+					var laypage = layui.laypage,
+						layer = layui.layer;
+				
+					//总页数大于页码总数
+					laypage.render({
+					    elem: 'pages'
+					    ,count: 100
+					    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+					    ,jump: function(obj){
+					      console.log(obj)
+					    }
+					});
+				});
+			</script>
+		</div>
+	</body>
+
+</html>

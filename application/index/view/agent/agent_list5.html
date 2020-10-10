@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>通号中心</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="stylesheet" type="text/css" href="__CSS__/base.css">
+		<link rel="stylesheet" type="text/css" href="__CSS__/iconfont.css">
+		<script type="text/javascript" src="__JS__/framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="__LIB__/layui/css/layui.css">
+		<script type="text/javascript" src="__LIB__/layui/layui.js"></script>
+		<!-- 滚动条插件 -->
+		<link rel="stylesheet" type="text/css" href="__CSS__/jquery.mCustomScrollbar.css">
+		<script src="__JS__/framework/jquery-ui-1.10.4.min.js"></script>
+		<script src="__JS__/framework/jquery.mousewheel.min.js"></script>
+		<script src="__JS__/framework/jquery.mCustomScrollbar.min.js"></script>
+		<script src="__JS__/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+
+	</head>
+
+	<body>
+		<div class="cBody">
+			<div class="console">
+				<form class="layui-form" action="">
+					<div class="layui-form-item">
+						<label class="layui-form-label">车间</label>
+						<div class="layui-input-inline">
+		                    <select name="provid" id="provid" lay-filter="provid">
+								<option value="">选择科室</option>
+								<option value="1">生产技术室</option>
+								<option value="2">AFC车间</option>
+								<option value="3">自动化车间</option>
+								<option value="4">通信车间</option>
+								<option value="5">信号车间</option>
+		                    </select>
+						</div>
+						<label class="layui-form-label">工号</label>
+						<div class="layui-input-inline">
+							<input type="text" name="name"  placeholder="输入工号" autocomplete="off" class="layui-input">
+						</div>
+						<label class="layui-form-label">姓名</label>
+						<div class="layui-input-inline">
+							<input type="text" name="name"  placeholder="输入姓名" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">就职状态</label>
+						<div class="layui-input-inline">
+							<select name="cityid" id="cityid" lay-filter="cityid">
+		                        <option value="">就职状态</option>
+								<option value="1">就职</option>
+								<option value="2">离职</option>
+								<option value="3">内聘其他部门</option>
+		                    </select>
+						</div>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
+					</div>
+				</form>
+				<a href="agent_add5.html"><button class="layui-btn" >添加上岗证档案</button></a>
+				
+			</div>
+			
+			<table class="layui-table">
+				<thead>
+					<tr>
+						<th>车间</th>
+						<th>专业</th>
+						<th>姓名</th>
+						<th>理论成绩</th>
+						<th>实操成绩</th>
+						<th>三级安全教育成绩</th>
+						<th>上岗证编号</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>AFC车间</td>
+						<td>AFC</td>
+						<td>陈福长</td>
+						<td>90</td>
+						<td>90</td>
+						<td>合格</td>
+						<td>SGZ4190</td>
+						<td>
+							<a href="agent_edit5.html"><button class="layui-btn layui-btn-xs">修改</button></a>&nbsp;&nbsp;&nbsp;
+							<button class="layui-btn layui-btn-xs">删除</button>
+						</td>
+					</tr>
+					<tr>
+						<td>AFC车间</td>
+						<td>AFC</td>
+						<td>陈福长</td>
+						<td>90</td>
+						<td>90</td>
+						<td>合格</td>
+						<td>SGZ4190</td>
+						<td>
+							<a href="agent_edit5.html"><button class="layui-btn layui-btn-xs">修改</button></a>&nbsp;&nbsp;&nbsp;
+							<button class="layui-btn layui-btn-xs">删除</button>
+						</td>
+					</tr>
+					</tr>
+					<tr>
+						<td>AFC车间</td>
+						<td>AFC</td>
+						<td>陈福长</td>
+						<td>90</td>
+						<td>90</td>
+						<td>合格</td>
+						<td>SGZ4190</td>
+						<td>
+							<a href="agent_edit5.html"><button class="layui-btn layui-btn-xs">修改</button></a>&nbsp;&nbsp;&nbsp;
+							<button class="layui-btn layui-btn-xs">删除</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<!-- layUI 分页模块 -->
+			<div id="pages"></div>
+			<script>
+				layui.use(['laypage', 'layer'], function() {
+					var laypage = layui.laypage,
+						layer = layui.layer;
+				
+					//总页数大于页码总数
+					laypage.render({
+					    elem: 'pages'
+					    ,count: 100
+					    ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+					    ,jump: function(obj){
+					      console.log(obj)
+					    }
+					});
+				});
+			</script>
+		</div>
+	</body>
+
+</html>

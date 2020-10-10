@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>综合信息管理平台</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="shortcut icon" href="__IMG__/favicon.ico"/>
+		<link rel="bookmark" href="__IMG__/favicon.ico"/>
+		<link rel="stylesheet" type="text/css" href="__CSS__/base.css">
+		<link rel="stylesheet" type="text/css" href="__CSS__/iconfont.css">
+		<script type="text/javascript" src="__JS__/framework/jquery-1.11.3.min.js" ></script>
+		<link rel="stylesheet" type="text/css" href="__LIB__/layui/css/layui.css">
+	    <!--[if lt IE 9]>
+	      	<script src="__JS__/framework/html5shiv.min.js"></script>
+	      	<script src="__JS__/framework/respond.min.js"></script>
+	    <![endif]-->
+		<script type="text/javascript" src="__LIB__/layui/layui.js"></script>
+		<!-- 滚动条插件 -->
+		<link rel="stylesheet" type="text/css" href="__CSS__/jquery.mCustomScrollbar.css">
+		<script src="__JS__/framework/jquery-ui-1.10.4.min.js"></script>
+		<script src="__JS__/framework/jquery.mousewheel.min.js"></script>
+		<script src="__JS__/framework/jquery.mCustomScrollbar.min.js"></script>
+		<script src="__JS__/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+		
+		<link rel="stylesheet" type="text/css" href="__CSS__/frameStyle.css">
+		<script type="text/javascript" src="__JS__/framework/frame.js" ></script>
+		
+	</head>
+
+	<body>
+		<!-- 左侧菜单 - 开始 -->
+		<div class="frameMenu">
+		    <div class="logo">
+		        <img src="__IMG__/logo.png"/>
+		        <div class="logoText">
+		            <h1>管理系统</h1>
+		            <p>TONGHAOZHONGXIN</p>
+		        </div>
+		    </div>
+		    <div class="menu">
+		        <ul>
+		        	<li>
+		                <a class="menuFA" href="javascript:void(0)" onClick="menuCAClick('{:url('Maintain/maintain');}',this)"><i class="iconfont icon-zhishi left"></i>首页</a>
+		            </li>
+		        	
+		        	<li>
+		                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-liuliangyunpingtaitubiao03 left"></i>人员管理<i class="iconfont icon-dajiantouyou right"></i></a>
+		                <dl>
+							<dt><a href="javascript:void(0)" onClick="menuCAClick('{:url('Agent/agent_list');}',this)">花名册管理</a></dt>
+		                	<dt><a href="javascript:void(0)" onClick="menuCAClick('{:url('Agent/agent_authentication_date');}',this)">定岗时间管理</a></dt>
+							<dt><a href="javascript:void(0)" onClick="menuCAClick('{:url('Agent/import');}',this)">一键导入</a></dt>
+		                </dl>
+		            </li>
+					<li>
+		                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-liuliangyunpingtaitubiao03 left"></i>台账管理<i class="iconfont icon-dajiantouyou right"></i></a>
+		                <dl>
+							<dt><a href="javascript:void(0)" onClick="menuCAClick('{:url('Agent/agent_list5');}',this)">上岗证登记档案</a></dt>
+							<dt><a href="javascript:void(0)" onClick="menuCAClick('{:url('Agent/agent_list3');}',this)">特殊取证台账</a></dt>
+							<dt><a href="javascript:void(0)" onClick="menuCAClick('{:url('Agent/agent_list4');}',this)">个人技能档案</a></dt>
+							<dt><a href="javascript:void(0)" onClick="menuCAClick('{:url('Agent/agent_list2');}',this)">施工负责人台账</a></dt>
+		                </dl>
+		            </li>
+		        	<li>
+		                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-shangpin left"></i>备件管理<i class="iconfont icon-dajiantouyou right"></i></a>
+		                <dl>
+		                	<dt><a href="javascript:void(0)" onClick="menuCAClick('{:url('Goodsmanage/goods_type_list');}',this)">分类列表</a></dt>
+		                	<dt><a href="javascript:void(0)" onClick="menuCAClick('{:url('Goodsmanage/goods_list');}',this)">基本备品库</a></dt>
+		                	<dt><a href="javascript:void(0)" onClick="menuCAClick('{:url('Goodsmanage/goods_add');}',this)">添加备品</a></dt>
+		                </dl>
+		            </li>
+					<!--<li>
+		                <a class="menuFA" href="javascript:void(0)" onClick="menuCAClick('tgls/iconfont.html',this)"><i class="iconfont icon-huojian left"></i>字体库</a>
+		           	</li>
+		        	<li>
+		                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-yunying left"></i>基础库内容<i class="iconfont icon-dajiantouyou right"></i></a>
+		                <dl>
+		                	<dt><a href="javascript:void(0)" onClick="menuCAClick('tgls/base/base_add.html',this)">表单含编辑器</a></dt>
+		                	<dt><a href="javascript:void(0)" onClick="menuCAClick('tgls/base/base_list.html',this)">常用列表</a></dt>
+		                	<dt><a href="javascript:void(0)" onClick="menuCAClick('tgls/base/base_customList.html',this)">可新增的列表</a></dt>
+		                	<dt><a href="javascript:void(0)" onClick="menuCAClick('tgls/base/base_customNewList.html',this)">可新增的列表(手写)</a></dt>
+		                	<dt><a href="javascript:void(0)" onClick="menuCAClick('tgls/base/pages.html',this)">页签切换Table</a></dt>
+		                	<dt><a href="javascript:void(0)" onClick="menuCAClick('tgls/base/maintain.html',this)">维护中页面</a></dt>
+		                </dl>
+		           	</li>
+		        	<li>
+		                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-icon left"></i>打印模板<i class="iconfont icon-dajiantouyou right"></i></a>
+		                <dl>
+		                	<dt><a href="javascript:void(0)" onClick="menuCAClick('tgls/print/outPrintData.html',this)">入库单打印模版</a></dt>
+		                </dl>
+		           	</li>
+		        	<li>
+		                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-caiwu left"></i>财务管理</a>
+		           	</li>
+		        	<li>
+		                <a class="menuFA" href="javascript:void(0)"><i class="iconfont icon-icon left"></i>报表模块<i class="iconfont icon-dajiantouyou right"></i></a>
+		                <dl>
+		                	<dt><a href="javascript:void(0)" onClick="menuCAClick('tgls/reportForm/reportForm1.html',this)">订单统计报表</a></dt>
+		                </dl>
+		           	</li>-->
+		        </ul>
+		    </div>
+		</div>
+		<!-- 左侧菜单 - 结束 -->
+		
+		<div class="main">
+			<!-- 头部栏 - 开始 -->
+			<div class="frameTop">
+				<img class="jt" src="__IMG__/top_jt.png"/>
+				<div class="topMenu">
+					<ul>
+						<li><a href="javascript:void(0)" onClick="menuCAClick('tgls/modify_password.html',this)"><i class="iconfont icon-yonghu1"></i>管理员</a></li>
+						<li><a href="javascript:void(0)" onClick="menuCAClick('tgls/modify_password.html',this)"><i class="iconfont icon-xiugaimima"></i>修改密码</a></li>
+						<li><a href="login.html"><i class="iconfont icon-084tuichu"></i>注销</a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- 头部栏 - 结束 -->
+			
+			<!-- 核心区域 - 开始 -->
+			<div class="frameMain">
+				<div class="title" id="frameMainTitle">
+					<span><i class="iconfont icon-xianshiqi"></i>后台首页</span>
+				</div>
+				<div class="con">
+					<iframe id="mainIframe" src='{:url('Maintain/maintain');}' scrolling="yes"></iframe>
+				</div>
+			</div>
+			<!-- 核心区域 - 结束 -->
+		</div>
+	</body>
+
+</html>

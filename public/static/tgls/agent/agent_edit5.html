@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>通号中心</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="stylesheet" type="text/css" href="__CSS__/base.css">
+		<link rel="stylesheet" type="text/css" href="__CSS__/iconfont.css">
+		<script type="text/javascript" src="__JS__/framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="__LIB__/layui/css/layui.css">
+		<script type="text/javascript" src="__LIB__/layui/layui.js"></script>
+		<!-- 滚动条插件 -->
+		<link rel="stylesheet" type="text/css" href="__CSS__/jquery.mCustomScrollbar.css">
+		<script src="__JS__/framework/jquery-ui-1.10.4.min.js"></script>
+		<script src="__JS__/framework/jquery.mousewheel.min.js"></script>
+		<script src="__JS__/framework/jquery.mCustomScrollbar.min.js"></script>
+		<script src="__JS__/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+		
+		<style>
+			.layui-form{
+				margin-right: 30%;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="cBody">
+			<form id="addForm" class="layui-form" action="">
+				<div class="layui-form-item">
+					<label class="layui-form-label">车间</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="identity" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="AFC车间"> 
+					</div>
+					<label class="layui-form-label">专业</label>
+					<div class="layui-input-inline shortInput">
+						<blockquote>
+						  <p>
+						    <input type="text" name="identity" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="AFC">
+					          </p>
+					  </blockquote>
+					</div>
+					
+				</div>
+				
+				<div class="layui-form-item">
+					<label class="layui-form-label">标准理论学时</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="identity" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="≥60">
+					</div>
+					<label class="layui-form-label">标准实操学时</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="identity" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="≥80">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">提报批次</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="identity" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="1">
+					</div>
+					<label class="layui-form-label">用户名</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="identity" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="chenfuchang">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">姓名</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="identity" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="陈福长">
+					</div>
+					<label class="layui-form-label">集中批次</label>
+	                <div class="layui-input-inline shortInput">
+						<input type="text" name="identity" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="第一批">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">集中周期</label>
+					<div class="layui-input-inline shortInput">
+				       <input type="text" name="price" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="2019.4.2-2019.5.24">
+					</div>
+					<label class="layui-form-label">集中课时</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="price" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="210">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">师徒周期</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="price" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="2019.4.2-2019.5.24">
+					</div>
+					<label class="layui-form-label">师徒课时</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="realName" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="210">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">师傅姓名</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="realName" required lay-verify="required|identity"  autocomplete="off" class="layui-input" value="流星街">
+					</div>
+					<label class="layui-form-label">师傅岗位级别</label>
+	                <div class="layui-input-inline shortInput" >
+	                    <input type="text" name="realName" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="高级工">
+	                </div>
+				</div>	
+				<div class="layui-form-item">
+					<label class="layui-form-label">集中授课实施周期课时</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="realName" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="210">
+					</div>
+					<label class="layui-form-label">师徒带教实施周期课时</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="realName" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="140">
+					</div>	
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">上岗初考</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="realName" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="√">
+					</div>
+					<label class="layui-form-label">上岗补考</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="realName" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="√">
+					</div>	
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">理论成绩</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="realName" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="91">
+					</div>
+					<label class="layui-form-label">实操成绩</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="realName" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="92">
+					</div>	
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">三级安全教育成绩</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="realName" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="合格">
+					</div>
+					<label class="layui-form-label">上岗证编号</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="realName" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="SGZ001">
+					</div>	
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">发证日期</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="realName" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="2019/10/19">
+					</div>
+					<label class="layui-form-label">来源</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="realName" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="校招">
+					</div>
+						
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">请示批次</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="realName" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="2019年第一批">
+					</div>
+					<label class="layui-form-label">生产费用</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="realName" required lay-verify="required|identity" autocomplete="off" class="layui-input" value="200">
+					</div>	
+				</div>
+				
+				<div class="layui-form-item layui-form-text">
+					<label class="layui-form-label">备注</label>
+					<div class="layui-input-block">
+						<textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+					</div>
+				</div>
+				<!--<div class="layui-form-item">
+					<label class="layui-form-label">是否开通</label>
+					<div class="layui-input-block">
+						<input type="radio" name="sex" value="nan" title="启用" checked>
+						<input type="radio" name="sex" value="nv" title="禁用">
+					</div>
+				</div>-->
+				
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn" lay-submit lay-filter="submitBut">立即提交</button>
+						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					</div>
+				</div>
+			</form>
+			
+			<!-- 三级省市 插件 -->
+    		<script src="__JS__/framework/area.js"></script>
+			<script src="__JS__/framework/province.js"></script>
+			<script>
+				//默认城市为：宁夏 - 银川
+		        var defaults = {
+		            s1: 'provid',
+		            s2: 'cityid',
+		            s3: 'areaid',
+		            v1: 510000,
+		            v2: 510100,
+		            v3: null
+		        };
+			</script>
+
+		</div>
+	</body>
+
+</html>

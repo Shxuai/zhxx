@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>通号中心</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="stylesheet" type="text/css" href="__CSS__/base.css">
+		<link rel="stylesheet" type="text/css" href="__CSS__/iconfont.css">
+		<script type="text/javascript" src="__JS__/framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="__LIB__/lay/css/layui.css">
+		<script type="text/javascript" src="__LIB__/lay/layui.js"></script>
+		<script src="__LIB__/layui_exts/excel.js"></script>
+
+		<!-- 滚动条插件 -->
+		<link rel="stylesheet" type="text/css" href="__CSS__/jquery.mCustomScrollbar.css">
+		<script src="__JS__/framework/jquery-ui-1.10.4.min.js"></script>
+		<script src="__JS__/framework/jquery.mousewheel.min.js"></script>
+		<script src="__JS__/framework/jquery.mCustomScrollbar.min.js"></script>
+		<script src="__JS__/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+
+	</head>
+
+	<body>
+		<div class="cBody">
+			<div >
+				<button class="layui-btn layui-btn-radius" style="color:#fff;" id="search_btn"
+						onclick="$('#console').toggle(300);$('#timeTips').fadeToggle(300)">
+					<i class="layui-icon">搜索 </i>
+				</button>
+				<button type="button" class="layui-btn" id="addXls">
+					<i class="layui-icon">&#xe67c;</i>添加花名册
+				</button>
+			</div>
+			<div class="layui-form-item">
+
+			</div>
+			<div class="console" hidden id="console">
+				<div class="layui-form" action="">
+					<div class="layui-form-item">
+						<label class="layui-form-label">工号</label>
+						<div class="layui-input-inline">
+							<input type="text" name="work_number"  placeholder="输入工号" autocomplete="off" class="layui-input">
+						</div>
+						<label class="layui-form-label">姓名</label>
+						<div class="layui-input-inline">
+				        	<input type="text" name="name"  placeholder="输入姓名" autocomplete="off" class="layui-input">
+						</div>
+						<label class="layui-form-label">工班</label>
+						<div class="layui-input-inline">
+							<input type="text" name="class"  placeholder="输入工班" autocomplete="off" class="layui-input">
+		                </div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">科室</label>	
+						<div class="layui-input-inline">
+							<input type="text" name="department"  placeholder="输入科室" autocomplete="off" class="layui-input">
+						</div>
+						<label class="layui-form-label">岗位名称</label>
+		                <div class="layui-input-inline">
+							<input type="text" name="job_description"  placeholder="输入岗位名称" autocomplete="off" class="layui-input">
+		                </div>	
+						<label class="layui-form-label">岗位等级</label>
+						<div class="layui-input-inline">
+							<input type="text" name="job_level"  placeholder="输入岗位等级" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">职位类别</label>						
+						<div class="layui-input-inline">
+							<input type="text" name="job_class"  placeholder="输入职位类别" autocomplete="off" class="layui-input">
+						</div>
+						<label class="layui-form-label">入职日期</label>	
+						<div class="layui-input-inline">
+				        	<input type="text" name="entry_date"   id="initdate" placeholder="yyyy/MM/dd - yyyy/MM/dd" placeholder="选择日期" autocomplete="off" class="layui-input">
+						</div>
+						<label class="layui-form-label">离职日期</label>
+						<div class="layui-input-inline">
+				        	<input type="text" name="quit_date" id="quitdate" placeholder="yyyy/MM/dd - yyyy/MM/dd"  placeholder="选择日期" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">就职状态</label>
+						<div class="layui-input-inline">
+							<input type="radio" name="is_stay" value="1" title="是" checked>
+							<input type="radio" name="is_stay" value="0" title="否">
+		                </div>
+						<label class="layui-form-label">是否借调</label>
+						<div class="layui-input-inline">
+							<input type="radio" name="is_allocation" value="1" title="是" >
+							<input type="radio" name="is_allocation" value="0" title="否" checked>
+						</div>
+						<label class="layui-form-label">
+							<button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
+						</label>
+					</div>
+				</div>
+
+			</div>
+
+
+			<table class="layui-table" id="roster" lay-filter="rosterTool"></table>
+			
+			<!-- layUI 分页模块 -->
+			<div id="pages"></div>
+		</div>
+	</body>
+
+</html>
+<script>
+	layui.extend({
+		execl: "__LIB__/layui_exts/excel"
+	})
+
+	layui.use(['laypage','table', 'layer','form','laydate','upload','excel'], function() {
+		var form = layui.form,
+				laypage = layui.laypage,
+				layer = layui.layer,
+				table = layui.table,
+				upload = layui.upload,
+				excel = layui.excel,
+				laydate = layui.laydate;
+
+		// form.render();
+
+		//表格格式
+		var tableIns = table.render({
+			elem: '#roster'
+			,id: 'tableload'
+			, height: 540
+			, url: '{:url("Agent/agent_list")}' //数据接口
+			, title: '花名册'
+			, page: true //开启分页
+			,toolbar:'#toolbarDemo'
+			,defaultToolbar: []
+			, cols: [[ //表头
+				{type: 'checkbox', fixed: 'left'}
+				 , {field: 'work_number', title: '工号', align:'center', width: 100, sort: true, totalRow: true}
+				, {field: 'name', title: '姓名', align:'center', width: 100}
+				, {field: 'center', title: '部门', align:'center', width: 100, sort: true}
+				, {field: 'department', title: '科室', align:'center', width: 100, sort: true, totalRow: true}
+				, {field: 'job_description', title: '岗位', align:'center', width: 200, sort: true}
+				, {field: 'entry_date', title: '入职时间', align:'center', width: 150, sort: true}
+				, {field: 'certification_date', align:'center', title: '转正时间', width: 150, sort: true}
+				, {field: 'sex', title: '性别', align:'center', width: 80,sort: true}
+				, {field: 'class', title: '工班', align:'center', width: 140,sort: true}
+				, {field: 'nation', title: '民族', align:'center', width: 100, sort: true}
+				, {field: 'job_class', title: '职业类别', align:'center', width: 100, sort: true }
+				, {field: 'job_level', title: '岗位等级', align:'center', width: 100, sort: true}
+				, {field: 'edu_highest', title: '学历', align:'center', width: 100}
+				, {field: 'edu_profession', title: '专业', align:'center', width: 230, sort: true}
+				, {field: 'foreign_languages', title: '外语语种', align:'center', width: 150, sort: true}
+				, {field: 'foreign_languages_level', title: '外语等级', align:'center', width: 150, sort: true}
+				, {field: 'is_allocation', title: '是否借调', align:'center', width: 100}
+				, {field: 'allocation_center', title: '借调部门', align:'center', width: 100, sort: true}
+				, {field: 'first_job_date', title: '首次工作时间', align:'center', width: 100, sort: true, totalRow: true}
+				, {field: 'is_married', title: '是否已婚', align:'center', width: 70, sort: true}
+				, {field: 'is_professional', title: '是否有职称', align:'center', width: 150, sort: true}
+				, {field: 'professional_title', title: '职称', align:'center', width: 220, sort: true}
+				, {field: 'is_stay', title: '是否在职', align:'center', width: 70}
+				, {field: 'special_skill', title: '特殊技能', align:'center', width: 100, sort: true}
+				, {field: 'political', title: '政治面貌', align:'center', width: 100, sort: true, totalRow: true}
+				, {fixed: 'right', width: 80,title: '操作', align:'center', toolbar: '#barDemo'}
+			]]
+		});
+
+		//工具栏操作
+		table.on('tool(rosterTool)', function(obj){
+			console.log(obj.event);
+			switch(obj.event){
+				case 'delete':
+					layer.msg('删除');
+					break;
+			};
+		});
+
+		//上传文件
+		var uploadInst = upload.render({
+			elem: '#addXls' //绑定元素
+			// ,url: '{:url("Agent/agent_add")}' //上传接口
+			,accept:'file'
+			,exts: 'xls|excel|xlsx'
+			,before: function(obj){ //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+				layer.load(); //上传loading
+			}
+			,done: function(res){
+				layer.closeAll('loading');
+				layer.msg(res.msg);
+
+			}
+			,error: function(){
+				//请求异常回调
+			}
+		});
+
+		// 搜索功能
+		form.on('submit(formDemo)', function (data) {
+			console.log(data);
+			var workNumber = data.field.work_number;
+			var name = data.field.name;
+			var classname = data.field.class;
+			var department = data.field.department;
+			var job_description = data.field.job_description;
+			var job_level = data.field.job_level;
+			var job_class = data.field.job_class;
+			var entry_date = data.field.entry_date;
+			var quit_date = data.field.quit_date;
+			var is_stay = data.field.is_stay;
+			var is_allocation = data.field.is_allocation;
+
+			table.reload('tableload', {
+				url: '{:url("Agent/agent_list")}',
+				method: 'get',
+				page: {
+					curr: 1 //重新从第 1 页开始
+					 ,limit :10
+				},
+				where: {
+					work_number: workNumber,
+					name: name,
+					class: classname,
+					department: department,
+					job_description: job_description,
+					job_level: job_level,
+					job_class: job_class,
+					entry_date: entry_date,
+					quit_date: quit_date,
+					is_stay: is_stay,
+					is_allocation: is_allocation
+				}
+			});
+		});
+
+		 //初试时间设置
+		initdate = laydate.render({
+			elem: '#initdate', //指定元素
+			btns: ['clear','confirm'],
+			range: true,
+			format:'yyyy/MM/dd',
+			max: 'nowTime',//默认最大值为当前日期
+			done: function (value, date) {
+				quitdate.config.min = {
+					year: date.year,
+					month: date.month - 1 ,//关键
+					date: date.date + 1 ,
+				};
+			}
+
+		});
+		 //结束时间设置
+		quitdate = laydate.render({
+			elem: '#quitdate', //指定元素
+			format:'yyyy/MM/dd',
+			range: true,
+			btns: ['now','confirm'],
+			max: 'nowTime',
+			done: function (value, date) {
+				initdate.config.max = {
+					year: date.year,
+					month: date.month -1 ,//关键
+					date: date.date -1,
+				};
+			}
+		});
+
+		//选择导出
+		table.on('toolbar(rosterTool)', function(obj) {
+			var selectData = layui.table.checkStatus('tableload').data;
+			switch (obj.event) {
+				case 'getCheckData':
+					selectData.unshift({
+						center:'部门/中心',
+						department:'车间',
+						class:'工班',
+						name:'名字',
+						work_number:'工号',
+						sex:'性别',
+						job_description:'岗位名称',
+						job_level:'岗位等级',
+						job_class:'职位类型',
+						entry_date:'入职时间',
+						certification_date:'转正时间',
+						quit_date:'离职时间',
+						is_stay:'就职状态',
+						is_allocation:'是/否借调',
+						allocation_center:'借调部门',
+						first_job_date:'首次工作时间',
+						edu_highest:'最高学历',
+						edu_profession:'学习专业',
+						foreign_languages:'外语类型',
+						foreign_languages_level:'外语级别',
+						special_skill:'特长',
+						is_professional:'是否拥有职称',
+						professional_title:'职称',
+						is_married:'是否已婚',
+						nation:'民族',
+						political:'政治面貌'
+					});
+					console.log(1)
+					excel.exportExcel({
+						sheet1: selectData
+					}, '花名册.xlsx', 'xlsx');
+					break;
+			}
+		});
+
+
+
+		});
+</script>
+<!--工具栏-->
+<script type="text/html" id="barDemo">
+	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+</script>
+<!--头文件-->
+<script type="text/html" id="toolbarDemo">
+	<div class="layui-btn-container">
+		<button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据导出</button>
+	</div>
+</script>

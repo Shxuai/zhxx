@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>通号中心</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="stylesheet" type="text/css" href="__CSS__/base.css">
+		<link rel="stylesheet" type="text/css" href="__CSS__/iconfont.css">
+		<script type="text/javascript" src="__JS__/framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="__LIB__/layui/css/layui.css">
+		<script type="text/javascript" src="__LIB__/layui/layui.js"></script>
+		<!-- 滚动条插件 -->
+		<link rel="stylesheet" type="text/css" href="__CSS__/jquery.mCustomScrollbar.css">
+		<script src="__JS__/framework/jquery-ui-1.10.4.min.js"></script>
+		<script src="__JS__/framework/jquery.mousewheel.min.js"></script>
+		<script src="__JS__/framework/jquery.mCustomScrollbar.min.js"></script>
+		<script src="__JS__/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+		
+		<style>
+			.layui-form{
+				margin-right: 30%;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div class="cBody">
+			<form id="addForm" class="layui-form" action="">
+				<div class="layui-form-item">
+					
+					<label class="layui-form-label">姓名</label>
+					<div class="layui-input-inline shortInput">					
+						<input type="text" name="identity" required lay-verify="required|identity" autocomplete="off" class="layui-input">    
+					</div>
+					<label class="layui-form-label">性质</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="identity" required lay-verify="required|identity" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				
+				<div class="layui-form-item">
+					<label class="layui-form-label">工作单位</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="identity" required lay-verify="required|identity" autocomplete="off" class="layui-input">
+					</div>
+					<label class="layui-form-label">部门</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="identity" required lay-verify="required|identity" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">专业</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="identity" required lay-verify="required|identity" autocomplete="off" class="layui-input">
+					</div>
+					<label class="layui-form-label">编号</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="identity" required lay-verify="required|identity" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">发证日期</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="identity" required lay-verify="required|identity" autocomplete="off" class="layui-input">
+					</div>
+					<label class="layui-form-label">复审日期</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="price" required lay-verify="required|identity" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">预计下次复审日期</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="price" required lay-verify="required|identity" autocomplete="off" class="layui-input">
+					</div>
+					<label class="layui-form-label">复审是否通过</label>
+					<div class="layui-input-block">
+						<input type="radio" name="1" value="nan" title="是" checked>
+						<input type="radio" name="2" value="nv" title="否">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">来往部门</label>
+					<div class="layui-input-inline shortInput">
+						<input type="text" name="price" required lay-verify="required|identity" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item layui-form-text">
+					<label class="layui-form-label">备注</label>
+					<div class="layui-input-block">
+						<textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+					</div>
+				</div>
+			
+				
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn" lay-submit lay-filter="submitBut">立即提交</button>
+						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					</div>
+				</div>
+			</form>
+			
+			<!-- 三级省市 插件 -->
+    		<script src="__JS__/framework/area.js"></script>
+			<script src="__JS__/framework/province.js"></script>
+			<script>
+				//默认城市为：宁夏 - 银川
+		        var defaults = {
+		            s1: 'provid',
+		            s2: 'cityid',
+		            s3: 'areaid',
+		            v1: 510000,
+		            v2: 510100,
+		            v3: null
+		        };
+			</script>
+
+		</div>
+	</body>
+
+</html>

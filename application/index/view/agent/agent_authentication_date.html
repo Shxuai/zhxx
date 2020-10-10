@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<!-- Google Chrome Frame也可以让IE用上Chrome的引擎: -->
+		<meta name="renderer" content="webkit">
+		<!--国产浏览器高速模式-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>通号中心</title>
+
+		<!-- 公共样式 开始 -->
+		<link rel="stylesheet" type="text/css" href="__CSS__/base.css">
+		<link rel="stylesheet" type="text/css" href="__CSS__/iconfont.css">
+		<script type="text/javascript" src="__JS__/framework/jquery-1.11.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="__LIB__/layui/css/layui.css">
+		<script type="text/javascript" src="__LIB__/layui/layui.js"></script>
+		<!-- 滚动条插件 -->
+		<link rel="stylesheet" type="text/css" href="__CSS__/jquery.mCustomScrollbar.css">
+		<script src="__JS__/framework/jquery-ui-1.10.4.min.js"></script>
+		<script src="__JS__/framework/jquery.mousewheel.min.js"></script>
+		<script src="__JS__/framework/jquery.mCustomScrollbar.min.js"></script>
+		<script src="__JS__/framework/cframe.js"></script><!-- 仅供所有子页面使用 -->
+		<!-- 公共样式 结束 -->
+
+	</head>
+
+	<body>
+		<div class="cBody">
+			<div class="console">
+				<form class="layui-form" action="">
+					<div class="layui-form-item">
+						<label class="layui-form-label">科室</label>
+						<div class="layui-input-inline">
+							<input type="text" name="class"  placeholder="输入科室" autocomplete="off" class="layui-input">
+						</div>
+						<label class="layui-form-label">工号</label>
+						<div class="layui-input-inline">
+							<input type="text" name="work_number"  placeholder="输入工号" autocomplete="off" class="layui-input">
+						</div>
+						<label class="layui-form-label">姓名</label>
+						<div class="layui-input-inline">
+							<input type="text" name="name"  placeholder="输入姓名" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">入职时间</label>
+						<div class="layui-input-inline">
+							<input type="text" name="name"  placeholder="选择日期" autocomplete="off" class="layui-input">
+						</div>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<button class="layui-btn" lay-submit lay-filter="formDemo">检索</button>
+					</div>
+				</form>
+				<a href="agent_add1.html"><button class="layui-btn" >添加人员定岗</button></a>
+
+			</div>
+
+			<table class="layui-table" id="determinedate" lay-filter = "determine">
+
+			</table>
+
+			<!-- layUI 分页模块 -->
+			<div id="pages"></div>
+			<script>
+				layui.use(['laypage','table', 'form', 'layer'], function() {
+					var laypage = layui.laypage,
+							layer = layui.layer,
+							table = layui.table,
+							upload = layui.upload;
+
+					//总页数大于页码总数
+
+					var tableIns = table.render({
+						elem: '#determinedate'
+						,id: 'determinedateIns'
+						, height: 540
+						, url: '{:url("Agent/agent_authentication_date")}' //数据接口
+						, title: '花名册'
+						, page: true //开启分页
+						,toolbar:'#toolbarDemo'
+						,defaultToolbar: []
+						, cols: [[ //表头
+							{type: 'checkbox', fixed: 'left'}
+							, {field: 'work_number', title: '工号', align:'center', width: 100, sort: true, totalRow: true}
+							// , {field: 'name', title: '姓名', align:'center', width: 100}
+							, {field: 'junior_worker_date', title: '检修员/辅助保障（初级）', align:'center', width: 230, sort: true}
+							, {field: 'intermediate_worker_date', title: '检修员/辅助保障（中级）', align:'center', width: 230, sort: true, totalRow: true}
+							, {field: 'senior_worker_date', title: '检修员/辅助保障（高级）', align:'center', width: 230, sort: true}
+							, {field: 'learning_assistant_date', title: '学习助理', align:'center', width: 150, sort: true}
+							, {field: 'assistant_date', align:'center', title: '助理', width: 150, sort: true}
+							, {field: 'sponsor_2_date', title: '主办（二级）', align:'center', width:140,sort: true}
+							, {field: 'sponsor_1_date', title: '主办（一级）', align:'center', width: 140,sort: true}
+							, {field: 'executive_date', title: '主管', align:'center', width: 100, sort: true}
+							, {field: 'senior_executive_date', title: '高级主管', align:'center', width: 150, sort: true }
+							, {field: 'ultimate_executive_date', title: '资深主管', align:'center', width: 150, sort: true}
+							, {field: 'director_assistant_date', title: '主任助理', align:'center', width: 150}
+							, {field: 'sub_director_date', title: '副主任', align:'center', width: 150, sort: true}
+							, {field: 'director_date', title: '主任', align:'center', width: 150, sort: true}
+							, {field: 'sub_manager_date', title: '副经理/主任工程师', align:'center', width: 200, sort: true}
+							, {field: 'manager_date', title: '经理', align:'center', width: 100}
+							, {fixed: 'right', width: 80,title: '操作', align:'center', toolbar: '#barDemo'}
+						]]
+					});
+				});
+			</script>
+		</div>
+	</body>
+</html>
+<script type="text/html" id="barDemo">
+	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+</script>
